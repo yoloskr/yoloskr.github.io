@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <!--Description-->
+
+    
+
+    
+        <meta name="description" content="PHPer"/>
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="yolo"/>
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="进程的创建与执行"/>
+    
+
+    <!--Open Graph Description-->
+    
+        <meta property="og:description" content="PHPer"/>
+    
+
+    <!--Open Graph Site Name-->
+        <meta property="og:site_name" content="Yolo"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article"/>
+    
+
+    <!--Page Cover-->
+    
+    
+        <meta property="og:image" content="http://yoloskr.github.io/bloghttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+        <meta name="twitter:card" content="summary_large_image"/>
+
+    
+
+    
+        <meta name="twitter:image" content="http://yoloskr.github.io/bloghttp://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg"/>
+    
+
+    <!-- Title -->
+    
+    <title>进程的创建与执行 - Yolo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css"/>
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet"/>
+
+    <!-- Google Analytics -->
+    
+
+
+    <!-- favicon -->
+    
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/blog/">Configurable Title</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/blog/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/tags">
+                            
+                                Tags
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/blog/categories">
+                            
+                                Categories
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank" rel="noopener">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>进程的创建与执行</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        
+                            2019-08-02
+                        
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/blog/tags/process/">#process</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h4 id="一个进程，主要包含三个元素："><a href="#一个进程，主要包含三个元素：" class="headerlink" title="一个进程，主要包含三个元素："></a>一个进程，主要包含三个元素：</h4><ul>
+<li><p>一个可以执行的程序；</p>
+</li>
+<li><p>和该进程相关联的全部数据（包括变量，内存空间，缓冲区等等）；</p>
+</li>
+<li><p>程序的执行上下文（execution context）；</p>
+<p>在Linux系统中，每一个进程都由一个小的正整数来唯一标识，称为进程ID，除了少数系统进程外，进程和进程ID之间没有固定关系。新进程创建时，内核会按顺序将下一个可用的进程ID分配给其使用。一旦达到进程限制时，内核将重置进程ID计数器。</p>
+<p>除了超级进程外（进程ID为1），任何一个进程都有一个父进程，PHP可以用posix_getppid()获取当前进程的父进程ID。所有进程及其父进程构成了一个树形结构，称为进程树，可以用pstree命令查看系统进程树。</p>
+<h3 id="每个进程所分配的内存由很多部分组成，通常称之为“段（segment）”。"><a href="#每个进程所分配的内存由很多部分组成，通常称之为“段（segment）”。" class="headerlink" title="每个进程所分配的内存由很多部分组成，通常称之为“段（segment）”。"></a>每个进程所分配的内存由很多部分组成，通常称之为“段（segment）”。</h3></li>
+<li><p>文本段包含了进程运行的程序机器语言指令。文本段具有只读属性，以防止进程意外地修改自身指令。因为多个进程可同时运行同一程序，所以文本段一般是可以共享的，这样，一份程序代码的拷贝可以映射到所有这些进程的虚拟地址空间中。</p>
+</li>
+<li><p>初始化数据段包含显式初始化的全局变量和静态变量。当程序加载到内存时，从可执行文本中读取这些变量的值。</p>
+</li>
+<li><p>未初始化数据段包含了未进行显式初始化的全局变量和静态变量。程序启动之前，系统将本段内所有内存初始化为0。</p>
+</li>
+<li><p>栈（stack）是一个动态增长和收缩的段，由栈帧组成。系统会为每个当前调用的函数分配一个栈帧。栈帧中存储了函数的局部变量（自动变量）、实参和返回值。</p>
+</li>
+<li><p>堆（heap）是可在运行时动态进行内存分配的一块区域。堆顶端称为program break。</p>
+<p><img src="/blog/public/image2019-6-10_13-34-1.png" alt="avatar"></p>
+</li>
+</ul>
+<h2 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h2><p>一个进程的生命周期可以划分为一组状态 ，即新建态、阻塞态、就绪态、运行态、终止态。各种状态的转换关系如下：<br>   <img src="/blog/public/image2019-6-10_12-4-33.png" alt="avatar"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ps 24407</span></span><br><span class="line"> PID     TT    STAT       TIME     COMMAND</span><br><span class="line"> 24407   s004    S+      0:00.07   php 1.php</span><br><span class="line"></span><br><span class="line">STAT列显式了当前进程所处在的运行状态</span><br><span class="line">D     不可中断</span><br><span class="line">R     正在运行，或在队列中的进程</span><br><span class="line">S     处于休眠状态</span><br><span class="line">T     停止或被追踪</span><br><span class="line">Z     僵尸进程</span><br><span class="line">W     进入内存交换（从内核2.6开始无效）</span><br><span class="line">X     死掉的进程</span><br><span class="line">   </span><br><span class="line">&lt;      高优先级</span><br><span class="line">N     低优先级</span><br><span class="line">L     有些页被锁进内存</span><br><span class="line">s     包含子进程</span><br><span class="line">+     位于后台的进程组</span><br><span class="line">|     多线程</span><br></pre></td></tr></table></figure>
+
+<p>进程通常有两种终止方式，其一为异常（abnormal）终止，这是由对一信号的接收而引发，该信号的默认动作为终止当前进程，可能产生核心转储（core dump）。此外，进程可以使用exit()函数正常（normally）终止。<br>exit()函数的$status参数定义了进程的终止状态（termination status），PHP父进程可以调用pcntl_wait()获取该状态。按照惯例，终止状态为0标示进程执行成功，而非0值则表示进程因异常而退出。<br>不管进程是正常终止还是异常终止，进程结束时都会释放申请的内存、打开的文件描述符及建立的socket连接等资源。  </p>
+<p>可以使用register_shutdown_function()注册一个在php终止时执行的函数，这些被注册的回调会按照它们注册时的顺序依次执行。不过，如果进程是被信号杀死，那么终止函数将不会被调用。</p>
+<h2 id="进程的创建"><a href="#进程的创建" class="headerlink" title="进程的创建"></a>进程的创建</h2><p>pcntl_fork() 创建一个新的进程，新创建的进程和原来的进程<strong>执行相同的程序文本段</strong>，但却各自拥有不同的栈段、数据段以及堆段拷贝。函数调用成功后返回两个结果，<strong>在父进程中返回子进程的进程ID，在子进程中返回0</strong>。调用失败则返回-1，可以用pcntl_errno()和pcntl_strerror()查看错误代码和错误信息。 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">switch</span> (pcntl_fork()) &#123;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">case</span> <span class="number">-1</span>:    <span class="comment">// 创建进程失败</span></span><br><span class="line">    fprintf(STDERR, <span class="string">"pcntl_fork() failed(%d): %s\n"</span>, pcntl_errno(), pcntl_strerror(pcntl_errno()));</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">1</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">case</span> <span class="number">0</span>:     <span class="comment">// 子进程</span></span><br><span class="line">    printf(<span class="string">" in child, pid: %d, ppid: %d\n"</span>, posix_getpid(), posix_getppid());</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">default</span>:    <span class="comment">// pid大于0，父进程</span></span><br><span class="line">    printf(<span class="string">"in parent, pid: %d, ppid: %d\n"</span>, posix_getpid(), posix_getppid());</span><br><span class="line">    <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在父进程中返回子进程的进程ID的原因是因为，没有一种办法可以获取当前进程的所有子进程ID，因此父进程可以在调用pcntl_fork()之后，就把返回的子进程ID保存起来，以便后续使用。而在子进程中，随时都可以通过调用posix_getppid()获取父进程的进程ID。</p>
+<p>调用pcntl_fork()之后，系统率先执行哪个进程是不确定的，依赖CPU调度的代码会产生“竞争条件（race condition）”的错误。</p>
+<p>父、子进程拥有不同的栈段、数据段和以及堆段，意味着父、子进程可以安全地对自己段内地变量进行修改，不会影响其它进程。 </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$num = <span class="number">7</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> (pcntl_fork() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 子进程</span></span><br><span class="line">    $num++;</span><br><span class="line">    printf(<span class="string">" in child, num is: %d\n"</span>, $num);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 父进程</span></span><br><span class="line">sleep(<span class="number">1</span>);   <span class="comment">// 使用sleep强制父进程休眠，以便CPU调度先执行子进程, 不过这不是保险的作法，更好的作法是使用信号、文件锁或一些进程间通信技术</span></span><br><span class="line">printf(<span class="string">"in parent, num is: %d\n"</span>, $num);</span><br></pre></td></tr></table></figure>
+
+<p>##父子进程间的文件共享<br>执行pcntl_fork()时，<strong>子进程会获得父进程所有文件描述符的副本</strong>，即父、子进程中对应的描述符指向相同的打开文件句柄（open file description）。打开文件句柄包含有当前文件偏移量以及文件状态标志，一个打开文件的这些属性因之而在父子进程间实现了共享。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$fp = fopen(<span class="string">"/tmp/1.log"</span>, <span class="string">"w"</span>);</span><br><span class="line"> </span><br><span class="line">printf(<span class="string">"before pcntl_fork()\n"</span>);</span><br><span class="line">printf(<span class="string">"  blocked: %s\n"</span>, stream_get_meta_data($fp)[<span class="string">'blocked'</span>] ? <span class="string">"true"</span> : <span class="string">"false"</span>);</span><br><span class="line">printf(<span class="string">"  content: %s\n"</span>, file_get_contents(<span class="string">"/tmp/1.log"</span>));</span><br><span class="line">printf(<span class="string">"\n"</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> (pcntl_fork() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 子进程</span></span><br><span class="line">    stream_set_blocking($fp, <span class="keyword">false</span>);    <span class="comment">// 设置不阻塞</span></span><br><span class="line">    fputs($fp, <span class="string">"hello "</span>);</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">fputs($fp, <span class="string">"world!"</span>);</span><br><span class="line"> </span><br><span class="line">printf(<span class="string">"after pcntl_fork()\n"</span>);</span><br><span class="line">printf(<span class="string">"  blocked: %s\n"</span>, stream_get_meta_data($fp)[<span class="string">'blocked'</span>] ? <span class="string">"true"</span> : <span class="string">"false"</span>);</span><br><span class="line">printf(<span class="string">"  content: %s\n"</span>, file_get_contents(<span class="string">"/tmp/1.log"</span>));</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，子进程中的exit()函数调用隐含了关闭文件描述符，但是父进程在子进程关闭了文件描述符之后依然可以使用这个文件描述符。<br><img src="/blog/public/share_file_handle.png" alt="avatar"><br>父子进程间的文件共享偏移量可以确保二者不会覆盖彼此的输出内容，不过，这并不能阻止父子进程的输出随意混杂在一起。要规避这一现象，需要进行进程间同步。</p>
+<p>Socket连接和文件描述符有类似地效果,但是，MySQL连接是个例外, MySQL连接不能安全的在父子进程间同时使用</p>
+<p>##创建多个子进程</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; <span class="number">5</span>; ++$i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (pcntl_fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 子进程</span></span><br><span class="line">        printf(<span class="string">"child #%d is created!\n"</span>, posix_getpid());</span><br><span class="line">        sleep($i);</span><br><span class="line">        printf(<span class="string">"child #%d is exited!\n"</span>, posix_getpid());</span><br><span class="line">        <span class="keyword">exit</span>(<span class="number">0</span>);    <span class="comment">// 子进程退出，非常重要!</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>##父进程等待子进程退出<br>父、子进程的退出顺序决定了子进程的状态：<br>     如果父进程先于子进程退出，子进程会被超级进程（进程ID等于1）接管，成为孤儿进程<br>     如果子进程先退出，则父进程必须调用pcntl_wait()或pcntl_waitpid()获取子进程的退出状态，否则，子进程的进程描述符仍然存在系统中，成为僵尸进程</p>
+ <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span> (pcntl_fork() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 子进程</span></span><br><span class="line">    printf(<span class="string">"before parent exit, ppid: %d\n"</span>, posix_getppid());</span><br><span class="line">    sleep(<span class="number">2</span>);</span><br><span class="line">    printf(<span class="string">"after parent exit, ppid: %d\n"</span>, posix_getppid());</span><br><span class="line">    <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">printf(<span class="string">"parent pid: %d\n"</span>, posix_getpid());</span><br><span class="line">sleep(<span class="number">1</span>);</span><br><span class="line">```    </span><br><span class="line"></span><br><span class="line">在父进程中调用pcntl_wait()将等待调用进程的任一子进程终止，同时在参数$status中保存子进程退出时的状态信息。如果调用进程并无之前未被等待的子进程终止，调用将一直阻塞，直至某个子进程终止。如果调用时已有子进程终止，则会立即返回。</span><br><span class="line">```php</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> ($i = <span class="number">0</span>; $i &lt; <span class="number">3</span>; ++$i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (pcntl_fork() == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="comment">// 子进程</span></span><br><span class="line">        printf(<span class="string">"child pid is: %d\n"</span>, posix_getpid());</span><br><span class="line">        sleep($i);</span><br><span class="line">        <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">while</span> (($pid = pcntl_wait($status)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    printf(<span class="string">"child #%d exited!\n"</span>, $pid);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> ##进程池<br> 操作系统创建进程的代价是非常大的，对于需要频繁创建子进程的程序，可以预先创建一组进程，在后续过程中维护和使用这组进程，避免每次创建进程的消耗。<br> <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">$childs = [];</span><br><span class="line"><span class="keyword">for</span>($i=<span class="number">0</span>; $i&lt;<span class="number">5</span>; $i++) &#123;</span><br><span class="line">     createChildProcess($childs);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (($pid = pcntl_wait($status)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">unset</span>($childs[$pid]);</span><br><span class="line">      printf(<span class="string">"child exit pid:%d\n"</span>, $pid);</span><br><span class="line">      createChildProcess($childs);</span><br><span class="line">      printf(<span class="string">"current child pid %s\n"</span>, implode(<span class="string">','</span>, array_keys($childs)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createChildProcess</span><span class="params">(&amp;$childs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (($pid = pcntl_fork()) == <span class="number">0</span>) &#123;</span><br><span class="line">         printf(<span class="string">"in child pid:%d\n"</span>, posix_getpid());</span><br><span class="line">         do_something();</span><br><span class="line">         <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ($pid &gt;<span class="number">0</span> ) &#123;</span><br><span class="line">        $childs[$pid] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">do_something</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sleep(rand(<span class="number">1</span>,<span class="number">5</span>));</span><br></pre></td></tr></table></figure><br> ##执行其它程序<br> pcntl_exec()可以将新程序加载到某一进程的内存空间（这称为替换进程映像）。在这一操作过程中，将丢弃旧有程序，而进程的栈、数据以及堆段会被新程序的相应段所替换</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (pcntl_fork() == <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// 子进程</span></span><br><span class="line">    pcntl_exec(<span class="string">"/usr/bin/php"</span>, [<span class="string">"-r"</span>, <span class="string">'echo "hello world!\n";'</span>]);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"This line will never be executed!\";</span></span><br><span class="line"><span class="string">    exit(0);</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">while (pcntl_wait($status) &gt; 0)</span></span><br><span class="line"><span class="string">    ;</span></span><br></pre></td></tr></table></figure>
+<p>调用pcntl_exec()之后，因为同一进程依然存在，所以进程ID仍保持不变（还有部分进程属性也会保持不变）。由于是将调用程序取而代之，对pcntl_exec()的成功调用将永不返回，而一旦函数返回，就表明发生了错误。</p>
+<p>##supervisor的简单实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env php</span><br><span class="line">&lt;?php</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 命令列表</span><br><span class="line">$commands &#x3D; [</span><br><span class="line">    &#39;nginx&#39; &#x3D;&gt; [</span><br><span class="line">        &#39;path&#39; &#x3D;&gt; &#39;&#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx&#39;,</span><br><span class="line">        &#39;args&#39; &#x3D;&gt; [&#39;-g&#39;, &#39;&quot;daemon off;&quot;&#39;],</span><br><span class="line">    ],</span><br><span class="line"> </span><br><span class="line">    &#39;php-fpm&#39; &#x3D;&gt; [</span><br><span class="line">        &#39;path&#39; &#x3D;&gt; &#39;&#x2F;usr&#x2F;local&#x2F;php&#x2F;sbin&#x2F;php-fpm&#39;,</span><br><span class="line">        &#39;args&#39; &#x3D;&gt; [&#39;-F&#39;],</span><br><span class="line">    ]</span><br><span class="line">];</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 子进程列表</span><br><span class="line">$childs &#x3D; [];</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 循环创建子进程</span><br><span class="line">foreach ($commands as $name &#x3D;&gt; $config) &#123;</span><br><span class="line">    $childs[$name] &#x3D; create_child_process($name, $config);</span><br><span class="line">&#125;</span><br><span class="line">print_r($childs);</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 等待子进程退出</span><br><span class="line">while (($pid &#x3D; pcntl_wait($status)) &gt; 0) &#123;</span><br><span class="line">     </span><br><span class="line">    &#x2F;&#x2F; 找到退出的命令名</span><br><span class="line">    $name &#x3D; array_search($pid, $childs);</span><br><span class="line">    printf(&quot;%s exited!\n&quot;, $name);</span><br><span class="line"> </span><br><span class="line">    &#x2F;&#x2F; 创建新的子进程，重新启动这个命令</span><br><span class="line">    $childs[$name] &#x3D; create_child_process($name, $commands[$name]);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">&#x2F;&#x2F; 创建子进程, 执行命令</span><br><span class="line">function create_child_process($name, $item)</span><br><span class="line">&#123;</span><br><span class="line">    if (($pid &#x3D; pcntl_fork()) &#x3D;&#x3D; 0) &#123;</span><br><span class="line">        printf(&quot;%s start, pid is: %d\n&quot;, $name, posix_getpid());</span><br><span class="line">        pcntl_exec($item[&#39;path&#39;], $item[&#39;args&#39;]);</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    return $pid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/klugjo/hexo-theme-clean-blog" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">&copy; 2020 yolo<br></p>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>
